@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Кликер</title>
+	<link rel="stylesheet" href="styles.css">
+	<script type="text/javascript">
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/clicker/sw.js')
+            .then(function(registration) {
+                console.log('Registration successful, scope is:', registration.scope);
+            })
+            .catch(function(error) {
+                console.log('Service worker registration failed, error:', error);
+            });
+        }
+    </script>
+</head>
+<body>
+	<div id="info">
+		<p id="balance">Balance: 0$</p>
+		<p id="ips">Income per second: 0$</p>
+		<p id="ipc">Income per click: 1$</p>
+	</div>
+	<ul class="upgrades">
+		<h3>Upgrades</h3>
+		<li class="upgrade">
+			<p>Worker: +1$/sec</p>
+			<button class="upgrade-buy" onclick="buyUpgrade(0)">Buy: 50$</button>
+		</li>
+		<li class="upgrade">
+			<p>Sysadmin: +1$/click</p>
+			<button class="upgrade-buy" onclick="buyUpgrade(1)">Buy: 100$</button>
+		</li>
+	</ul>
+	<button id="work-btn" onclick="work()">Work</button>
+	<script type="text/javascript" src="save.js"></script>
+	<script type="text/javascript" src="index.js"></script>
+</body>
+</html>
