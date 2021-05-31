@@ -11,16 +11,28 @@ function doLoad(){
 		ips : 0,
 		upgrades : [
 			{
-				name : 'Worker',
+				name : 'Грузчик',
 				bonus : 1,
 				type : 'ips',
 				cost : 50
 			},
 			{
-				name : 'Sysadmin',
+				name : 'Менеджер',
 				bonus : 1,
 				type : 'ipc',
 				cost : 100
+			},
+			{
+				name : 'Джуниор Веб Разработчик',
+				bonus : 5,
+				type : 'ips',
+				cost : 509
+			},
+			{
+				name : 'Мидл Веб Разработчик',
+				bonus : 5,
+				type : 'ipc',
+				cost : 1200
 			}
 		]
 	}

@@ -19,9 +19,9 @@ function work(){
 }
 
 function update(){
-	balanceTx.innerText = `Balance: ${save.balance.toFixed(2)}$`;
-	ipsTx.innerText = `Income per second: ${save.ips.toFixed(2)}$`;
-	ipcTx.innerText = `Income per click: ${save.ipc.toFixed(2)}$`;
+	balanceTx.innerText = `Баланс: ${save.balance.toFixed(2)}$`;
+	ipsTx.innerText = `Доход в секунду: ${save.ips.toFixed(2)}$`;
+	ipcTx.innerText = `Доход за клик: ${save.ipc.toFixed(2)}$`;
 
 	upgradesLi.forEach((upgrade, i) => upgrade.innerText = `${save.upgrades[i].name}: ${save.upgrades[i].cost.toFixed(2)}$`);
 }

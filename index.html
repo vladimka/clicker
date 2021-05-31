@@ -20,22 +20,30 @@
 </head>
 <body>
 	<div id="info">
-		<p id="balance">Balance: 0$</p>
-		<p id="ips">Income per second: 0$</p>
-		<p id="ipc">Income per click: 1$</p>
+		<p id="balance">Баланс: 0$</p>
+		<p id="ips">Доход в секунду: 0$</p>
+		<p id="ipc">Доход за клик: 1$</p>
 	</div>
 	<ul class="upgrades">
 		<h3>Upgrades</h3>
 		<li class="upgrade">
-			<p>Worker: +1$/sec</p>
-			<button class="upgrade-buy" onclick="buyUpgrade(0)">Buy: 50$</button>
+			<p>Грузчик: +1$/сек.</p>
+			<button class="upgrade-buy" onclick="buyUpgrade(0)">Купить: 50$</button>
 		</li>
 		<li class="upgrade">
-			<p>Sysadmin: +1$/click</p>
-			<button class="upgrade-buy" onclick="buyUpgrade(1)">Buy: 100$</button>
+			<p>Менеджер: +1$/клик</p>
+			<button class="upgrade-buy" onclick="buyUpgrade(1)">Купить: 100$</button>
+		</li>
+		<li class="upgrade">
+			<p>Джуниор Веб Разработчик: +1$/сек.</p>
+			<button class="upgrade-buy" onclick="buyUpgrade(2)">Купить: 500$</button>
+		</li>
+		<li class="upgrade">
+			<p>Мидл Веб Разработчик: +1$/клик</p>
+			<button class="upgrade-buy" onclick="buyUpgrade(3)">Купить: 1200$</button>
 		</li>
 	</ul>
-	<button id="work-btn" onclick="work()">Work</button>
+	<button id="work-btn" onclick="work()">Работать</button>
 	<script type="text/javascript" src="save.js"></script>
 	<script type="text/javascript" src="index.js"></script>
 </body>
