@@ -1,50 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Кликер</title>
-	<link rel="stylesheet" href="styles.css">
-	<link rel="manifest" href="manifest.json">
-	<script type="text/javascript">
-        if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('/clicker/sw.js')
-            .then(function(registration) {
-                console.log('Registration successful, scope is:', registration.scope);
-            })
-            .catch(function(error) {
-                console.log('Service worker registration failed, error:', error);
-            });
-        }
-    </script>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clicker</title>
+    <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-	<div id="info">
-		<p id="balance">Баланс: 0$</p>
-		<p id="ips">Доход в секунду: 0$</p>
-		<p id="ipc">Доход за клик: 1$</p>
-	</div>
-	<ul class="upgrades">
-		<h3>Upgrades</h3>
-		<li class="upgrade">
-			<p>Грузчик: +1$/сек.</p>
-			<button class="upgrade-buy" onclick="buyUpgrade(0)">Купить: 50$</button>
-		</li>
-		<li class="upgrade">
-			<p>Менеджер: +1$/клик</p>
-			<button class="upgrade-buy" onclick="buyUpgrade(1)">Купить: 100$</button>
-		</li>
-		<li class="upgrade">
-			<p>Джуниор Веб Разработчик: +1$/сек.</p>
-			<button class="upgrade-buy" onclick="buyUpgrade(2)">Купить: 500$</button>
-		</li>
-		<li class="upgrade">
-			<p>Мидл Веб Разработчик: +1$/клик</p>
-			<button class="upgrade-buy" onclick="buyUpgrade(3)">Купить: 1200$</button>
-		</li>
-	</ul>
-	<button id="work-btn" onclick="work()">Работать</button>
-	<script type="text/javascript" src="save.js"></script>
-	<script type="text/javascript" src="index.js"></script>
+    <div class="user-info">
+        <h1>Coins: <span id="balance">0</span></h1>
+        <p>Coins per click: <span id="coinsPerClick">1</span></p>
+        <p>Coins per second: <span id="coinsPerSecond">0</span></p>
+    </div>
+    <div class="tabs">
+        <div class="tab" id="upgrades">
+            <h2 class="tab-header">Upgrades</h2>
+        </div>
+        <div class="tab" id="settings">
+            <h2 class="tab-header">Settings</h2>
+            <button class="tab-item" onclick="save()">Save</button>
+            <button class="tab-item" onclick="btnLoad()">Load</button>
+        </div>
+    </div>
+    <button class="do-money" onclick="doMoney()">Do Money</button>
+    <script src="js/index.js"></script>
 </body>
 </html>
