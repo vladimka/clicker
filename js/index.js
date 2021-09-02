@@ -2,6 +2,7 @@ let user = load();
 
 function save(){
     localStorage.setItem('clicker-save', JSON.stringify(user));
+    NotificationManager.add('Saved!');
 }
 
 function load(){
@@ -19,6 +20,14 @@ function load(){
                     cost : 30,
                     costMultiplier : 1.17,
                     bonusType : 'cpc',
+                    bonus : 1
+                },
+                {
+                    displayName : 'auto finger',
+                    value : 0,
+                    cost : 200,
+                    costMultiplier : 1.17,
+                    bonusType : 'cps',
                     bonus : 1
                 }
             ]
@@ -52,6 +61,7 @@ let upgradesTab = document.getElementById('upgrades');
 let balanceSpan = document.getElementById('balance');
 let coinsPerClickSpan = document.getElementById('coinsPerClick');
 let coinsPerSecondSpan = document.getElementById('coinsPerSecond');
+let notificationsUl = document.getElementsByClassName('notifications')[0];
 let upgradeElements;
 
 function renderUpgrades(){
@@ -82,5 +92,22 @@ function redraw(){
     });
 }
 
+class NotificationManager{
+    static add(text){
+        notificationsUl.innerHTML += `<div class='notification'>${text}</div>`;
+        setTimeout(() => NotificationManager.removeLast(), 5e3);
+    }
+
+    static removeLast(){
+        let notifs = notificationsUl.getElementsByClassName('notification');
+        let lastNotif = notifs[notifs.length-1];
+
+        lastNotif.style.opacity = 0;
+        setTimeout(() => notificationsUl.removeChild(lastNotif), 4e2);
+    }
+}
+
 renderUpgrades();
+setInterval(() => user.balance += user.coinsPerSecond, 1e3);
 setInterval(redraw, 100);
+setInterval(() => save(), 1e4);
