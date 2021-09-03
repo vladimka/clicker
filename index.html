@@ -14,14 +14,26 @@
         <p>Coins per click: <span id="coinsPerClick">1</span></p>
         <p>Coins per second: <span id="coinsPerSecond">0</span></p>
     </div>
+    <div class="tab-buttons">
+        <button class="tab-button active upgrades-tab" onclick="setTab('upgrades-tab')">Upgrades</button>
+        <button class="tab-button settings-tab" onclick="setTab('settings-tab')">Settings</button>
+    </div>
     <div class="tabs">
-        <div class="tab" id="upgrades">
+        <div class="tab active upgrades-tab">
             <h2 class="tab-header">Upgrades</h2>
         </div>
-        <div class="tab" id="settings">
+        <div class="tab settings-tab">
             <h2 class="tab-header">Settings</h2>
+
+            <h3 class="tab-header">Save & Load</h3>
             <button class="tab-item" onclick="save()">Save</button>
             <button class="tab-item" onclick="btnLoad()">Load</button>
+            <button class="tab-item" onclick="toggleAutosave()">Autosave: <span id="autosaveStatus">enabled</span></button>
+            <button class="tab-item" onclick="hardReset()">Hard Reset</button>
+            <input type="number" id="autosaveInterval" value="10" onchange="setAutosaveInterval(this)">
+
+            <h3 class="tab-header">Theme</h3>
+            <button class="tab-item" onclick="toggleTheme()">Toggle dark theme</button>
         </div>
     </div>
     <button class="do-money" onclick="doMoney()">Do Money</button>
