@@ -108,3 +108,12 @@ button:hover{
 .tab-button.active{
     border-bottom: 1px solid var(--color);
 }
+
+.achievement{
+    padding: 5px;
+}
+
+.achievement.active{
+    background-color: rgba(82, 230, 45, 0.938);
+    color: white;
+}
