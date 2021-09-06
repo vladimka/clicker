@@ -1,26 +1,22 @@
+:root{
+    --red: #ff3829;
+    --green: #4caf50;
+}
+
 *{
     margin: 0;
     padding: 0;
 }
 
 body{
-    --color: black;
-    --background-color: white;
-    color: black;
-    background-color: white;
-}
-
-.dark{
-    --color: white;
-    --background-color: black;
-    color: white !important;
-    background-color: black !important;
+    color: var(--theme-color);
+    background-color: var(--theme-background-color);
 }
 
 button{
-    background-color: var(--background-color);
-    color: var(--color);
-    border: 1px solid var(--color);
+    background-color: var(--theme-background-color);
+    color: var(--theme-color);
+    border: 1px solid var(--theme-color);
     border-radius: 5px;
     padding: 3px;
 }
@@ -31,6 +27,7 @@ button:hover{
 
 .user-info{
     text-align: center;
+    margin: 5px auto;
 }
 
 .tabs{
@@ -40,6 +37,7 @@ button:hover{
 .tab{
     display: none;
     padding: 20px;
+    text-align: center;
 }
 
 .tab.active{
@@ -89,9 +87,9 @@ button:hover{
     animation-duration: .4s;
     animation-iteration-count: 1;
     margin: 5px;
-    background-color: rgba(82, 230, 45, 0.938);
-    padding: 5px;
+    background-color: var(--green);
     color: white;
+    padding: 5px;
     transition: 1s opacity;
 }
 
@@ -106,7 +104,7 @@ button:hover{
 }
 
 .tab-button.active{
-    border-bottom: 1px solid var(--color);
+    border-bottom: 1px solid var(--theme-color);
 }
 
 .achievement{
@@ -114,6 +112,12 @@ button:hover{
 }
 
 .achievement.active{
-    background-color: rgba(82, 230, 45, 0.938);
+    background-color: var(--green);
     color: white;
+}
+
+#hardResetBtn{
+    border: 1px solid var(--theme-color);
+    background-color: var(--red);
+    padding: 3px;
 }

@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Кликер</title>
+    <link rel="stylesheet" id="themeLink" href="css/light_theme.css">
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
@@ -12,37 +13,54 @@
     <div class="user-info">
         <h1>Монеты: <span id="balance">0</span></h1>
         <p>Монет за клик: <span id="coinsPerClick">1</span></p>
-        <p>Coins в секунду: <span id="coinsPerSecond">0</span></p>
+        <p>Монет в секунду: <span id="coinsPerSecond">0</span></p>
+        <p id="timeSpeedP" style="display: none;">Скорость времени: <span id="timeSpeed">1</span></p>
     </div>
     <div class="tab-buttons">
         <button class="tab-button active upgrades-tab" onclick="setTab('upgrades-tab')">Улучшения</button>
-        <button class="tab-button settings-tab" onclick="setTab('settings-tab')">Настройки</button>
+        <button class="tab-button prestige-tab" style="display: none;" onclick="setTab('prestige-tab')">Престиж</button>
         <button class="tab-button achievements-tab" onclick="setTab('achievements-tab')">Достижения</button>
+        <button class="tab-button settings-tab" onclick="setTab('settings-tab')">Настройки</button>
     </div>
     <div class="tabs">
         <div class="tab active upgrades-tab">
+            <h2 class="tab-header">Улучшения</h2>
+        </div>
+
+        <div class="tab prestige-tab">
+            <h2 class="tab-header">Престиж</h2>
+            <p class="tab-item">Очки престижа: <span id="prestigePoints">0</span></p>
+            <p class="tab-item">Можно получить: <span id="pp-gain">0</span> ОП</p>
+            <button class="tab-item" onclick="prestige()">Получить ОП</button>
+        </div>
+
+        <div class="tab achievements-tab">
             <h2 class="tab-header">Достижения</h2>
         </div>
+
         <div class="tab settings-tab">
             <h2 class="tab-header">Настройки</h2>
 
             <h3 class="tab-header">Сохранение и загрузка</h3>
-            <button class="tab-item" onclick="save()">Сохраненить</button>
-            <button class="tab-item" onclick="load()">Загрузить</button>
-            <button class="tab-item" onclick="toggleAutosave()">Автосохранение: <span id="autosaveStatus">включено</span></button>
-            <button class="tab-item" onclick="hardReset()">Полный сброс</button>
-            <input type="number" id="autosaveInterval" value="10" onchange="setAutosaveInterval(this)">
+            <button class="tab-item" onclick="save()">Сохранить</button>
+            <button class="tab-item" onclick="load()">Загрузить</button><br>
+
+            <button class="tab-item" onclick="toggleAutosave()">Автосохранение: <span id="autosaveStatus">включено</span></button><br>
+            <div class="tab-item">
+                <label for="autosaveInterval">Интервал Автосохранения</label><br>
+                <input type="number" name="autosaveInterval" id="autosaveInterval" value="10" onchange="setAutosaveInterval(this)"><br>
+            </div>
+
+            <button class="tab-item" onclick="hardReset()" id="hardResetBtn">Полный сброс</button>
 
             <h3 class="tab-header">Темы</h3>
             <button class="tab-item" onclick="toggleTheme()">Переключить тему</button>
-        </div>
-        <div class="tab achievements-tab">
-            <h2 class="tab-header">Достижения</h2>
         </div>
     </div>
     <button class="do-money" onclick="doMoney()">Заработать</button>
     <script src="js/ui.js"></script>
     <script src="js/save.js"></script>
+    <script src="js/prestige.js"></script>
     <script src="js/render.js"></script>
     <script src="js/index.js"></script>
 </body>

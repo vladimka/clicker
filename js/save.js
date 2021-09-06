@@ -2,9 +2,10 @@ let initialSave = {
     balance : 0,
     coinsPerClick : 1,
     coinsPerSecond : 0,
+    timeSpeed : 1,
     upgrades : [
         {
-            displayName : '+1 палец',
+            displayName : '+1 Палец',
             value : 0,
             cost : 30,
             costMultiplier : 1.17,
@@ -12,7 +13,7 @@ let initialSave = {
             bonus : 1
         },
         {
-            displayName : 'авто палец',
+            displayName : 'Авто Палец',
             value : 0,
             cost : 200,
             costMultiplier : 1.17,
@@ -20,12 +21,20 @@ let initialSave = {
             bonus : 1
         },
         {
-            displayName : '+1 рука',
+            displayName : 'Авто Рука',
             value : 0,
-            cost : 1e4,
+            cost : 5e3,
             costMultiplier : 1.17,
-            bonusType : 'cpc',
+            bonusType : 'cps',
             bonus : 10
+        }
+    ],
+    prestigeUpgrades : [
+        {
+            displayName : 'Скорость времени',
+            cost : 1,
+            costMultiplier : 2,
+            value : 0
         }
     ],
     achievements : [
@@ -43,24 +52,30 @@ let initialSave = {
             name : '1000 монет',
             has : false,
             description : 'Заработать 1000 монет'
+        },
+        {
+            name : 'Третья рука',
+            has : false,
+            description : 'Купить улучшение "Авто Рука"'
         }
     ],
     autosaveEnabled : true,
     autosaveInterval : 10,
-    prestigePoints : 0
+    prestigePoints : 0,
+    totalPrestiged : 0
 }
 
 let achievementConditions = [
     () => user.balance >= 1,
-    () => user.upgrades[0] >= 10,
-    () => user.balance >= 1000
+    () => user.upgrades[0].value >= 10,
+    () => user.balance >= 1000,
+    () => user.upgrades[2].value >= 1
 ]
 
 let user = initialSave;
 
 function save(){
     localStorage.setItem('clicker-save', JSON.stringify(user));
-    NotificationManager.add('Сохранено!');
 }
 
 function load(){
@@ -68,6 +83,59 @@ function load(){
 
     if(save == undefined || save == null || save == {})
         return;
+
+    for(let property in initialSave){
+        if(save[property]) continue;
+
+        save[property] = initialSave[property];
+    }
+
+    for(let i = 0; i < initialSave.upgrades.length; i++){
+        let upg = initialSave.upgrades[i];
+
+        if(!save.upgrades[i]){
+            save.upgrades[i] = upg;
+            continue;
+        }
+
+        if(save.upgrades[i].name == upg.name) continue;
+        if(save.upgrades[i].cost != upg.cost){
+            save.upgrades[i].cost = upg.cost;
+            continue;
+        }
+
+        save.upgrades[i] = upg;
+    }
+
+    for(let i = 0; i < initialSave.prestigeUpgrades.length; i++){
+        let upg = initialSave.prestigeUpgrades[i];
+
+        if(!save.prestigeUpgrades[i]){
+            save.prestigeUpgrades[i] = upg;
+            continue;
+        }
+
+        if(save.prestigeUpgrades[i].name == upg.name) continue;
+        if(save.prestigeUpgrades[i].cost != upg.cost){
+            save.prestigeUpgrades[i].cost = upg.cost;
+            continue;
+        }
+
+        save.prestigeUpgrades[i] = upg;
+    }
+
+    for(let i = 0; i < initialSave.achievements.length; i++){
+        let achv = initialSave.achievements[i];
+
+        if(!save.achievements[i]){
+            save.achievements[i] = achv;
+            continue;
+        }
+
+        if(save.achievements[i].name == achv.name) continue;
+
+        save.achievements[i] = achv;
+    }
 
     user = save;
 }
@@ -87,8 +155,10 @@ function hardReset(){
 }
 
 function autosaveTimeout(){
-    if(user.autosaveEnabled)
+    if(user.autosaveEnabled){
         save();
+        NotificationManager.add('Сохранено!');
+    }
     
     setTimeout(autosaveTimeout, user.autosaveInterval * 1e3);
 }

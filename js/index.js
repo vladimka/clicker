@@ -10,10 +10,13 @@ function doUpgrade(index){
     upgrade.value++;
     user.balance -= upgrade.cost;
     upgrade.cost *= upgrade.costMultiplier;
+    upgrade.cost = Math.floor(upgrade.cost);
     upgrade.bonusType == 'cpc'
         ? user.coinsPerClick += upgrade.bonus
         : user.coinsPerSecond += upgrade.bonus;
 }
+
+const prestigeTabBtn = document.querySelector('.tab-button.prestige-tab');
 
 function logic(){
     user.achievements.forEach((achievement, idx) => {
@@ -24,7 +27,7 @@ function logic(){
         NotificationManager.add('Получено достижение: ' + achievement.name);
     });
 
-    user.balance += user.coinsPerSecond;
+    user.balance += user.coinsPerSecond * user.timeSpeed;
 }
 
 load();

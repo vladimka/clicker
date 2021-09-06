@@ -24,8 +24,9 @@ function setTab(tabId){
 }
 
 function toggleTheme(){
-    if(document.body.classList.contains('dark'))
-        return document.body.classList.remove('dark');
+    let themeLink = document.getElementById('themeLink');
+    let href = themeLink.href.match(/css\/.*/)[0];
 
-    document.body.classList.add('dark');
+    if(href == 'css/light_theme.css') themeLink.href = 'css/dark_theme.css';
+    else if(href == 'css/dark_theme.css') themeLink.href = 'css/light_theme.css';
 }
