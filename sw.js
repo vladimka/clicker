@@ -7,16 +7,7 @@ self.addEventListener('install', async e => {
         const files = [
             './',
             './icon.png',
-            './index.html',
             './sw.js',
-            './js/index.js',
-            './js/prestige.js',
-            './js/render.js',
-            './js/save.js',
-            './js/ui.js',
-            './css/styles.css',
-            './css/light_theme.css',
-            './css/dark_theme.css',
             './manifest.json'
         ];
         const cacheStat = await caches.open(CACHE_STATIC);

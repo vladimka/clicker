@@ -62,7 +62,8 @@ let initialSave = {
     autosaveEnabled : true,
     autosaveInterval : 10,
     prestigePoints : 0,
-    totalPrestiged : 0
+    totalPrestiged : 0,
+    version : '1.0.0'
 }
 
 let achievementConditions = [
