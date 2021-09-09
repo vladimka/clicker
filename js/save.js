@@ -27,6 +27,14 @@ let initialSave = {
             costMultiplier : 1.17,
             bonusType : 'cps',
             bonus : 10
+        },
+        {
+            displayName : 'Скорость времени',
+            value : 0,
+            cost : 1e4,
+            costMultiplier : 1.2,
+            bonusType : 'ts',
+            bonus : 1
         }
     ],
     prestigeUpgrades : [
@@ -63,7 +71,7 @@ let initialSave = {
     autosaveInterval : 10,
     prestigePoints : 0,
     totalPrestiged : 0,
-    version : '1.0.0'
+    timeSpeedBuyed : false
 }
 
 let achievementConditions = [

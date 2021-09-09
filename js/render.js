@@ -14,6 +14,9 @@ let achievementsElements;
 
 function renderUpgrades(){
     user.upgrades.forEach((upgrade, index) => {
+        if(index == 3 && !user.timeSpeedBuyed)
+            return;
+
         upgradesTab.innerHTML += `
             <div class='upgrade tab-item' id='${index}-upgrade'>
                 <p>${upgrade.displayName}</p>
@@ -92,11 +95,22 @@ function redraw(){
     if(prestigeTabBtn.style.display == 'none' && (countPpGain() >= 1 || user.prestigePoints > 0 || user.totalPrestiged > 0))
         prestigeTabBtn.style.display = 'block';
 
-    if(timeSpeedP.style.display == 'none' && (user.timeSpeed > 1))
+    if(document.getElementById('3-upgrade') == undefined && user.timeSpeedBuyed){
+        upgradesTab.innerHTML += `
+            <div class='upgrade tab-item' id='3-upgrade'>
+                <p>Скорость времени</p>
+                <p class="upgrade-cost">Цена: <span>10000</span></p>
+                <p class="upgrade-value">Куплено: <span>0</span></p>
+                <button onclick='doUpgrade(3)'>Купить</button>
+            </div>
+        `;
+    }
+
+    if(timeSpeedP.style.display == 'none' && user.timeSpeedBuyed)
         timeSpeedP.style.display = 'block';
 
     achievementsElements.forEach(achievementElement => {
-        let index = parseInt(achievementElement.id.split('-')[0]);;
+        let index = parseInt(achievementElement.id.split('-')[0]);
         let achievement = user.achievements[index];
 
         if(achievement.has)

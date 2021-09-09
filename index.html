@@ -5,20 +5,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=0">
     <title>Кликер</title>
-    <link rel="manifest" href="manifest.json">
     <link rel="shortcut icon" href="icon.png" type="image/x-icon">
     <link rel="stylesheet" id="themeLink" href="css/light_theme.css">
     <link rel="stylesheet" href="css/styles.css">
-    <script>
-        if('serviceWorker' in navigator){
-            self.addEventListener("load", async () => {
-                const container = navigator.serviceWorker;
-                if (container.controller === null) {
-                    const reg = await container.register("sw.js");
-                }
-            });
-        }
-    </script>
 </head>
 <body>
     <ul class="notifications"></ul>

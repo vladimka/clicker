@@ -11,9 +11,13 @@ function doUpgrade(index){
     user.balance -= upgrade.cost;
     upgrade.cost *= upgrade.costMultiplier;
     upgrade.cost = Math.floor(upgrade.cost);
-    upgrade.bonusType == 'cpc'
-        ? user.coinsPerClick += upgrade.bonus
-        : user.coinsPerSecond += upgrade.bonus;
+    
+    if(upgrade.bonusType == 'cpc')
+        user.coinsPerClick += upgrade.bonus;
+    if(upgrade.bonusType == 'ts')
+        user.timeSpeed += upgrade.bonus;
+    if(upgrade.bonusType == 'cps')
+        user.coinsPerSecond += upgrade.bonus;
 }
 
 const prestigeTabBtn = document.querySelector('.tab-button.prestige-tab');

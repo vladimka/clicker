@@ -1,7 +1,7 @@
-const countPpGain = () => Math.max(0, Math.round(Math.log10(user.balance) - 3));
+const countPpGain = () => Math.max(0, (Math.log(user.balance)/Math.log(10))-3);
 
 const prestigeUpgradeHandlers = [
-    () => user.timeSpeed++
+    () => user.timeSpeedBuyed = true
 ]
 
 function doPrestigeUpgrade(index){
@@ -32,4 +32,6 @@ function prestige(){
     user.coinsPerClick = 1;
     user.coinsPerSecond = 0;
     user.balance = 0;
+
+    setTab('upgrades-tab');
 }
